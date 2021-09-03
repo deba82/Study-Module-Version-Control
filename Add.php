@@ -11,7 +11,6 @@
 
     <title>Aptitude World</title>
 </head>
-
 <body>
     <?php
     $con = mysqli_connect("localhost", "root", "","aptitude");
@@ -28,7 +27,7 @@
             $message = "Sucessfully inserted";
             $code = "success";
             unset($_POST);
-            //header("refresh:5,location:index.php");
+            //header("refresh:5;location:index.php");
         } else {
             $message = "Error in inserting";
             $code = "danger";
