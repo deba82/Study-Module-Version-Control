@@ -11,9 +11,10 @@
 
     <title>Aptitude World</title>
 </head>
+
 <body>
     <?php
-    $con = mysqli_connect("localhost", "root", "","aptitude");
+    $con = mysqli_connect("localhost", "root", "", "aptitude");
     $message = "";
     $code = "";
     if (isset($_POST["submit"])) {
@@ -21,8 +22,9 @@
         $Module = $_POST["Module"];
         $Practice = $_POST["Practice"];
         $Exercise = $_POST["Exercise"];
+        $SpExercise = $_POST["SpExercise"];
         $con = mysqli_connect("localhost", "root", "", "aptitude");
-        $sql = "INSERT INTO `main` (`id`,`Serial`, `Module`, `Practice`, `Exercise`) VALUES (NULL,'$Serial', '$Module', '$Practice', '$Exercise')";
+        $sql = "INSERT INTO `main` (`id`,`Serial`, `Module`, `Practice`, `Exercise`,`SpExercise`) VALUES (NULL,'$Serial', '$Module', '$Practice', '$Exercise','$SpExercise')";
         if (mysqli_query($con, $sql)) {
             $message = "Sucessfully inserted";
             $code = "success";
@@ -54,6 +56,10 @@
         <div class="mb-3">
             <label for="Name" class="form-label">Number of Exercise Question</label>
             <input type="number" class="form-control" name="Exercise">
+        </div>
+        <div class="mb-3">
+            <label for="Name" class="form-label">Number of special Exercise Question</label>
+            <input type="number" class="form-control" name="SpExercise">
         </div>
         <input type="submit" value="submit" class="btn btn-primary" name="submit">
         <div class="alert alert-<?php echo $code ?>" role="alert">

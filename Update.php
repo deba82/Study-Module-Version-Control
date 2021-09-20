@@ -28,8 +28,9 @@
         $Module = $_POST["Module"];
         $Practice = $_POST["Practice"];
         $Exercise = $_POST["Exercise"];
+        $SpExercise = $_POST["SpExercise"];
         $con = mysqli_connect("localhost", "root", "", "aptitude");
-        $sql = "UPDATE `main` SET `Serial` = '$Serial',`Module` = '$Module',`Practice` = '$Practice',`Exercise` = '$Exercise' WHERE `main`.`id` = $id";
+        $sql = "UPDATE `main` SET `Serial` = '$Serial',`Module` = '$Module',`Practice` = '$Practice',`Exercise` = '$Exercise',`SpExercise` = '$SpExercise' WHERE `main`.`id` = $id";
         if (mysqli_query($con, $sql)) {
             $message = "Sucessfully updated";
             $code = "success";
@@ -56,7 +57,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="Name" class="form-label">Module Name</label>
-                    <input type="text" class="form-control" name="Module" value=<?php echo $res["Module"] ?>>
+                    <input type="text" class="form-control" name="Module" value="<?php echo $res["Module"] ?>">
                 </div>
                 <div class="mb-3">
                     <label for="Name" class="form-label">Number of Practice Question</label>
@@ -65,6 +66,10 @@
                 <div class="mb-3">
                     <label for="Name" class="form-label">Number of Exercise Question</label>
                     <input type="number" class="form-control" name="Exercise" value=<?php echo $res["Exercise"] ?>>
+                </div>
+                <div class="mb-3">
+                    <label for="Name" class="form-label">Number of Special Exercise Question</label>
+                    <input type="number" class="form-control" name="SpExercise" value=<?php echo $res["SpExercise"] ?>>
                 </div>
                 <input type="submit" value="Update" class="btn btn-primary" name="update">
                 <div class="alert alert-<?php echo $code ?>" role="alert">

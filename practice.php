@@ -6,6 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        #saveform {
+            display:flex;
+            justify-content: center;
+        }
+    </style>
     <title>Practice</title>
 </head>
 
@@ -34,6 +40,10 @@
                     array_push($list, $item);
                 }
                 for ($i = 1; $i <= $result['Exercise']; $i++) {
+                    $item = $result['Serial'] . "E" . $i . " [" . $result['Module'] . "]";
+                    array_push($list, $item);
+                }
+                for ($i = 1; $i <= $result['SpExercise']; $i++) {
                     $item = $result['Serial'] . "E" . $i . " [" . $result['Module'] . "]";
                     array_push($list, $item);
                 }
@@ -119,7 +129,7 @@
         <?php
         if (isset($slist)) {
         ?>
-            <form id="saveform" method="post" class="d-flex justify-content-center">
+            <form id="saveform" method="post">
                 <input class="form-control" id="Savelist" type="hidden" aria-label="readonly input example" readonly value="<?php $savelist = implode(",", $slist);
                                                                                                                             echo $savelist; ?>" name="Savelist">
                 <input type="submit" class=" btn btn-success mb-2 mx-2" value="Save These Questions">
@@ -140,7 +150,6 @@
         <?php
         }
         ?>
-
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script>
             $("#saveform").submit(function(e) {

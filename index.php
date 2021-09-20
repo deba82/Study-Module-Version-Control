@@ -51,28 +51,30 @@
         List of Aptitude Chapters <span class="badge bg-light"><a href="Add.php">Add New</a></span>
     </div>
     <?php
-            $con = mysqli_connect("localhost", "root", "", "aptitude");
-            $sql = "select * from main where main.Status=1 ORDER BY `main`.`Serial` ASC";
-            $res = mysqli_query($con, $sql);
-            if (mysqli_num_rows($res) > 0) {
-                ?>
-    <table class="table container table-dark table-hover table-striped">
-        <thead class="container-fluid">
-            <th>Serial</th>
-            <th>Module Name</th>
-            <th>Practice</th>
-            <th>Exercise</th>
-            <th class="update">Update</th>
-            <th class="delete">Disable</th>
-        </thead>
-        <tbody>
-            <?php
+    $con = mysqli_connect("localhost", "root", "", "aptitude");
+    $sql = "select * from main where main.Status=1 ORDER BY `main`.`Serial` ASC";
+    $res = mysqli_query($con, $sql);
+    if (mysqli_num_rows($res) > 0) {
+    ?>
+        <table class="table container table-dark table-hover table-striped">
+            <thead class="container-fluid">
+                <th>Serial</th>
+                <th>Module Name</th>
+                <th>Practice</th>
+                <th>Exercise</th>
+                <th>SpExercise</th>
+                <th class="update">Update</th>
+                <th class="delete">Disable</th>
+            </thead>
+            <tbody>
+                <?php
                 while ($result = mysqli_fetch_assoc($res)) {
-            ?><tr>
+                ?><tr>
                         <td><?php echo $result["Serial"] ?></td>
                         <td><?php echo $result["Module"] ?></td>
                         <td><?php echo $result["Practice"] ?></td>
                         <td><?php echo $result["Exercise"] ?></td>
+                        <td><?php echo $result["SpExercise"] ?></td>
                         <td class="update"><a href="Update.php?id=<?php echo $result["id"] ?>">U</a></td>
                         <td class="delete"><a href="Disable.php?id=<?php echo $result["id"] ?>">D</a></td>
                     </tr>
@@ -80,39 +82,43 @@
                 }
             }
             ?>
-        </tbody>
+            </tbody>
 
-    </table>
-    <?php
-            $con = mysqli_connect("localhost", "root", "", "aptitude");
-            $sql = "select * from main where main.Status=0 ORDER BY `main`.`Serial` ASC";
-            $res = mysqli_query($con, $sql);
-            if (mysqli_num_rows($res) > 0) {
-                ?>
-    <table class="table container table-dark table-hover table-striped">
-        <thead class="container-fluid">
-            <th>Disabled Module Name</th>
-            <th class="delete">Enable</th>
-        </thead>
-        <tbody>
-            <?php
-                while ($result = mysqli_fetch_assoc($res)) {
-            ?><tr>
-                        <td><?php echo $result["Module"] ?></td>
-                        <td class="delete"><a href="Enable.php?id=<?php echo $result["id"] ?>">E</a></td>
-                    </tr>
-            <?php
+        </table>
+        <?php
+        $con = mysqli_connect("localhost", "root", "", "aptitude");
+        $sql = "select * from main where main.Status=0 ORDER BY `main`.`Serial` ASC";
+        $res = mysqli_query($con, $sql);
+        if (mysqli_num_rows($res) > 0) {
+        ?>
+            <table class="table container table-dark table-hover table-striped">
+                <thead class="container-fluid">
+                    <th>Disabled Module Name</th>
+                    <th class="delete">Enable</th>
+                </thead>
+                <tbody>
+                    <?php
+                    while ($result = mysqli_fetch_assoc($res)) {
+                    ?><tr>
+                            <td><?php echo $result["Module"] ?></td>
+                            <td class="delete"><a href="Enable.php?id=<?php echo $result["id"] ?>">E</a></td>
+                        </tr>
+                <?php
+                    }
                 }
-            }
-            ?>
-        </tbody>
+                ?>
+                </tbody>
 
-    </table>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
 
-    </script>
+            </table>
+            <h2 class="mt-2 d-flex justify-content-center">
+                <p class="badge"><a href="Change.php">Options</a></p>
+            </h2>
+            <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+            <script>
+
+            </script>
 </body>
 
 </html>
